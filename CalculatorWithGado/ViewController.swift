@@ -72,16 +72,23 @@ class ViewController: UIViewController {
         addToWorkChanges(value: "+")
     }
     @IBAction func calculateResultTap(_ sender: Any) {
-        if validInput() {
-        let chekWork = workChanges.replacingOccurrences(of: "%", with: "*0.01")
-        let exe = NSExpression(format: chekWork)
-        let result = exe.expressionValue(with: nil, context: nil) as! Double
-        let resultString = formateResult(result: result)
-        calculatorResults.text = resultString
-        }else {
-            let alert = UIAlertController(title: "Invalid Input", message: "Unable to do math on input", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else {return}
+            if self.validInput() {
+                let chekWork = self.workChanges.replacingOccurrences(of: "%", with: "*0.01")
+                let exe = NSExpression(format: chekWork)
+                let result = exe.expressionValue(with: nil, context: nil) as! Double
+                let resultString = self.formateResult(result: result)
+                DispatchQueue.main.async {
+                self.calculatorResults.text = resultString
+                }
+            }else {
+                DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Invalid Input", message: "Unable to do math on input", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                }
+            }
         }
     }
     func validInput() -> Bool {
