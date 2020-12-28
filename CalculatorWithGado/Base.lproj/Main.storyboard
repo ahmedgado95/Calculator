@@ -47,11 +47,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-TS-Mod">
                                 <rect key="frame" x="0.0" y="142" width="320" height="426"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-I2-eIy">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-I2-eIy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsJ-Ja-I7y">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="85"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="85"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                                 <state key="normal" title="Calculate">
                                                     <color key="titleColor" systemColor="systemOrangeColor"/>
@@ -60,19 +60,28 @@
                                                     <action selector="calculateResultTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pm3-51-MwL"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6no-P7-HPW">
-                                                <rect key="frame" x="240" y="0.0" width="80" height="85"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="ViE-B6-82H"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                                <state key="normal" title="AC">
-                                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="allClear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBV-Jk-m1Y"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yJA-O4-STK">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="85"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yT2-yH-6EU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="85"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6no-P7-HPW">
+                                                        <rect key="frame" x="80" y="0.0" width="80" height="85"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                        <state key="normal" title="AC">
+                                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="allClear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBV-Jk-m1Y"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GFL-uf-y4g">
@@ -270,6 +279,7 @@
                     <connections>
                         <outlet property="calculatorResults" destination="tU8-MK-tIh" id="tgg-VL-5dc"/>
                         <outlet property="calculatorWorkthings" destination="7Kp-q5-l3f" id="xdN-4g-DKJ"/>
+                        <outlet property="timeTXT" destination="yT2-yH-6EU" id="aFo-OA-Nuj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

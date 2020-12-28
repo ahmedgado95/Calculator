@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80C6625259919EB00F4C6BB /* ToolbarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C6624259919EB00F4C6BB /* ToolbarPickerView.swift */; };
 		F89D2BBB25989EEC006D20C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89D2BBA25989EEC006D20C0 /* AppDelegate.swift */; };
 		F89D2BBD25989EEC006D20C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89D2BBC25989EEC006D20C0 /* SceneDelegate.swift */; };
 		F89D2BBF25989EEC006D20C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89D2BBE25989EEC006D20C0 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F80C6624259919EB00F4C6BB /* ToolbarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPickerView.swift; sourceTree = "<group>"; };
 		F89D2BB725989EEC006D20C0 /* CalculatorWithGado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculatorWithGado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F89D2BBA25989EEC006D20C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89D2BBC25989EEC006D20C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				F89D2BC325989EF2006D20C0 /* Assets.xcassets */,
 				F89D2BC525989EF2006D20C0 /* LaunchScreen.storyboard */,
 				F89D2BC825989EF2006D20C0 /* Info.plist */,
+				F80C6624259919EB00F4C6BB /* ToolbarPickerView.swift */,
 			);
 			path = CalculatorWithGado;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				F89D2BBF25989EEC006D20C0 /* ViewController.swift in Sources */,
 				F89D2BBB25989EEC006D20C0 /* AppDelegate.swift in Sources */,
+				F80C6625259919EB00F4C6BB /* ToolbarPickerView.swift in Sources */,
 				F89D2BBD25989EEC006D20C0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
