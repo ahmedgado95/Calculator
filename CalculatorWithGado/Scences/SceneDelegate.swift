@@ -47,21 +47,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
         if let vc = window?.rootViewController as? ViewController {
             DispatchQueue.main.async {
-                vc.updateUI()
+                vc.backgroundService()
             }
         }
     }
     
     
-}
-
-extension UITextField{
-   @IBInspectable var placeHolderColor: UIColor? {
-        get {
-            return self.placeHolderColor
-        }
-        set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
-        }
-    }
 }

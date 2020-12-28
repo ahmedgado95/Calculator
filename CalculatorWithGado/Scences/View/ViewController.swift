@@ -7,7 +7,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UsersView {
+    func fetchingTimeSuccess(Tex: String) {
+        timeTXT.text = Tex
+    }
+    
+    func fetchingDataSuccess(Tex: String) {
+        calculatorResults.text = Tex
+    }
+    
+    
+    
+    func showError() {
+        let alert = UIAlertController(title: "Invalid Input", message: "Unable to do math on input", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var calculatorWorkthings: UILabel!
     @IBOutlet weak var calculatorResults: UILabel!
     @IBOutlet weak var timeTXT: UITextField!
@@ -16,6 +32,7 @@ class ViewController: UIViewController {
     fileprivate let pickerView = ToolbarPickerView()
     var timeData = [5,10,15,20,25,30,35,40,45,50,55,60,65,70]
     var timeOut : Double?
+    var presenter: UsersVCPresenter!
     var isTimeSelected = false
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -26,9 +43,12 @@ class ViewController: UIViewController {
         self.pickerView.delegate = self
         self.pickerView.toolbarDelegate = self
         self.pickerView.reloadAllComponents()
+        presenter = UsersVCPresenter(view: self)
     }
     
-    
+    func backgroundService (){
+        presenter.viewDidLoad(timeOut: timeOut ?? 0.0, workChanges: workChanges)
+    }
     
     @IBAction func allClear(_ sender: Any) {
         workChanges = ""
@@ -99,89 +119,7 @@ class ViewController: UIViewController {
         
     }
     
-    func validInput() -> Bool {
-        var count = 0
-        var charIndexes = [Int]()
-        for char in workChanges{
-            if specialChar(char: char) {
-                charIndexes.append(count)
-            }
-            count += 1
-        }
-        var previous : Int = -1
-        for index in charIndexes{
-            if index == 0 {return false}
-            if index == workChanges.count - 1 { return false}
-            if previous != -1 {
-                if index - previous == 1 {
-                    return false
-                }
-            }
-            previous = index
-        }
-        return true
-    }
-    func specialChar(char : Character) -> Bool {
-        if char == "*" {return true}
-        if char == "/" {return true}
-        if char == "+" {return true}
-        return false
-    }
-    func formateResult(result : Double) -> String {
-        if result.truncatingRemainder(dividingBy: 1) == 0 {
-            return String(format: "%.0f", result)
-        }else{
-            return String(format: "%.2f", result)
-        }
-    }
     
-    func updateUI() {
-        
-        print("Update UI Background")
-        self.updateTime()
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "H:mm:ss"
-//        let current_date_time = dateFormatter.string(from: date)
-//        print("Time \(current_date_time)")
-        let dispatchQueue = DispatchQueue.global(qos: .background)
-        dispatchQueue.async { [weak self] in
-            guard let self = self else {return}
-            dispatchQueue.asyncAfter(deadline: .now() + self.timeOut!) {
-                if self.validInput() {
-                    let chekWork = self.workChanges.replacingOccurrences(of: "%", with: "*0.01")
-                    let exe = NSExpression(format: chekWork)
-                    let result = exe.expressionValue(with: nil, context: nil) as! Double
-                    let resultString = self.formateResult(result: result)
-                    DispatchQueue.main.async {
-                        self.calculatorResults.text = resultString
-                    }
-                }else {
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Invalid Input", message: "Unable to do math on input", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
-    }
-    func updateTime(){
-        var secondsRemaining : Int  = Int(timeOut!)
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self](Timer) in
-            guard let self = self else {return}
-            if secondsRemaining > 0 {
-                print ("\(secondsRemaining)")
-                self.timeTXT.text =  ("\(secondsRemaining)")
-                secondsRemaining -= 1
-            } else {
-                Timer.invalidate()
-                self.timeTXT.text = nil
-            }
-            
-        }
-        
-    }
     
 }
 
